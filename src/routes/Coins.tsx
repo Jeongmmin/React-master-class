@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useQuery } from 'react-query';
-import { Link } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useQuery } from "react-query";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { fetchCoins } from '../api';
+import { fetchCoins, fetchCoinTickers } from "../api";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -65,27 +65,36 @@ interface ICoin {
   type: string;
 }
 
+// interface PriceData {
+//   quotes: {
+//     USD: {
+//       percent_change_15m: number;
+//       price: number;
+//     };
+//   };
+// }
+
 function Coins() {
-  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins)
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);
-  // const [loading, setLoading] = useState(true);
-
-  // // 특정한 시기에만 코드를 실행하기 위해 사용 -useEffect
-  // useEffect(() => {
-  //   // function 쓸 때 트릭! 그 자리에서 바로 fuction을 execute(실행)할 수 있음!
-  //   (async () => {
-  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");
-  //     const json = await response.json();
-
-  //     // 너무 많이서 200개만 사용
-  //     setCoins(json.slice(0, 200));
-  //     setLoading(false);
-  //   })();
-  // }, []);
+  // const { coinId } = useParams();
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+  
+  // const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+  //   ["tickers", coinId],
+  //   () => fetchCoinTickers(coinId!),
+  //   {
+  //     // refetchInterval : 5000,
+  //   }
+  //   );
+  // const BaseUrl : any = tickersData?.quotes.USD;
   return (
     <Container>
+      <HelmetProvider>
+        <Helmet>
+          <title>👻 BitGoast</title>
+        </Helmet>
+      </HelmetProvider>
       <Header>
-        <Title>코인</Title>
+        <Title>👻 BitGhost</Title>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
@@ -93,7 +102,10 @@ function Coins() {
         <CoinsList>
           {data?.slice(0, 200).map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`} state={{ name: coin.name, rank: coin.rank}}>
+              <Link
+                to={`/${coin.id}`}
+                state={{ name: coin.name, rank: coin.rank }}
+              >
                 <Img
                   src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
                 ></Img>
@@ -101,6 +113,12 @@ function Coins() {
               </Link>
             </Coin>
           ))}
+          {/* {isLoading ? (
+        "Price Loading..."
+      ) : (
+        <div><span>percent_change_15m</span>
+            <span>{`${BaseUrl.percent_change_15m} %`}</span></div>
+      )} */}
         </CoinsList>
       )}
     </Container>
