@@ -19,7 +19,7 @@ const Container = styled.div`
 const Header = styled.header`
   height: 15vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   a {
     /* display: flex; */
@@ -31,10 +31,6 @@ const Header = styled.header`
   }
 `;
 
-const None = styled.div`
-  visibility: hidden;
-  font-size: 40px;
-`;
 
 
 const Title = styled.h1`
@@ -66,7 +62,7 @@ const Description = styled.p`
 
 const Tabs = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin: 25px 0px;
   gap: 10px;
 `;
@@ -159,7 +155,8 @@ function Coin() {
   const { coinId } = useParams();
   const { state } = useLocation() as RouterState;
   const priceMatch = useMatch("/:coinId/price");
-  const chartMatch = useMatch("/:coinId/chart");
+  const LineChartMatch = useMatch("/:coinId/line-chart");
+  const CandleChartMatch = useMatch("/:coinId/candle-chart");
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
     ["info", coinId],
     () => fetchCoinInfo(coinId!)
@@ -168,7 +165,7 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId!),
     {
-      // refetchInterval : 5000,
+      refetchInterval : 5000,
     }
   );
 
@@ -184,11 +181,9 @@ function Coin() {
       </Helmet>
       </HelmetProvider>
       <Header>
-        <Link to={"/"}>{"<"}</Link>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
-        <None>{">"}</None>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
@@ -230,11 +225,11 @@ function Coin() {
 
           {/* chart & price tab */}
           <Tabs>
-            <Tab isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>Chart</Link>
+            <Tab isActive={LineChartMatch !== null}>
+              <Link to={`/${coinId}/line-chart`}>Chart</Link>
             </Tab>
-            <Tab isActive={priceMatch !== null}>
-              <Link to={`/${coinId}/price`}>Candle</Link>
+            <Tab isActive={CandleChartMatch !== null}>
+              <Link to={`/${coinId}/candle-chart`}>Candle</Link>
             </Tab>
             <Tab isActive={priceMatch !== null}>
               <Link to={`/${coinId}/price`}>Price</Link>

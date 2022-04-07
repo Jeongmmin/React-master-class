@@ -7,7 +7,7 @@ interface ChartProps {
   coinId: string;
 }
 
-interface IHistoricalData {
+interface IHistorical {
   time_open: string;
   time_close: string;
   open: number;
@@ -21,21 +21,35 @@ interface IHistoricalData {
 function Chart() {
   const { coinId } = useOutletContext<ChartProps>();
 
-  const { isLoading, data } = useQuery<IHistoricalData[]>(
+  const { isLoading, data } = useQuery<IHistorical[]>(
     ["ohlcv", coinId],
-    () => fetchCoinHistory(coinId)
+    () => fetchCoinHistory(coinId),
+    {
+      refetchInterval: 10000,
+    }
   );
+
+  const todayDataArr =
+    data?.map((data) => ({
+      x: data.time_close,
+      y: [
+        data.open.toFixed(2),
+        data.high.toFixed(2),
+        data.low.toFixed(2),
+        data.close.toFixed(2),
+      ],
+    })) ?? [];
+
   return (
     <div>
       {isLoading ? (
         "Loading chart..."
       ) : (
         <ApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
-              name: "price",
-              data: data?.map((price) => price.close) as number[],
+              data: todayDataArr,
             },
           ]}
           options={{
@@ -52,16 +66,19 @@ function Chart() {
             grid: {
               show: false,
             },
-            stroke: {
-              curve: "smooth",
+            plotOptions: {
+              candlestick: {
+                colors: {
+                  upward: "#4c91da",
+                  downward: "#ed79ca",
+                },
+              },
             },
+
             xaxis: {
               type: "datetime",
-              categories: data?.map((price) => price.time_close) ?? [],
-              tickPlacement: "between",
-              axisBorder: { show: false },
-              axisTicks: { show: false },
               labels: { show: true },
+              axisTicks: { show: false },
             },
             yaxis: {
               labels: {
@@ -72,13 +89,7 @@ function Chart() {
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
                 },
               },
-              axisBorder: { show: false },
             },
-            fill: {
-              type: "gradient",
-              gradient: { gradientToColors: ["#3588fd"], stops: [0, 100] },
-            },
-            colors: ["#84eb6b"],
           }}
         />
       )}

@@ -1,8 +1,8 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { fetchCoins, fetchCoinTickers } from "../api";
+import { fetchCoins } from "../api";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -77,7 +77,7 @@ interface ICoin {
 function Coins() {
   // const { coinId } = useParams();
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-  
+
   // const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
   //   ["tickers", coinId],
   //   () => fetchCoinTickers(coinId!),
@@ -111,6 +111,7 @@ function Coins() {
                 ></Img>
                 {coin.name} &rarr;
               </Link>
+              <div></div>
             </Coin>
           ))}
           {/* {isLoading ? (

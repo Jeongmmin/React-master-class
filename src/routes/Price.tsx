@@ -41,12 +41,28 @@ interface PriceData {
   };
 }
 
+const Overview = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+`;
 const OverviewItem = styled.div`
   display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 10px;
+  /* flex-direction: row; */
+  align-items: center;
+  font-size: 10px;
+  font-weight: 400;
+  justify-content: space-between;
+  /* span {
+      border-right: 1px solid white;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  } */
+  h3 {
+    color: #c776ed;
+  }
 `;
 
 const RowOverviewItem = styled.div`
@@ -69,52 +85,52 @@ function Price() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId!),
     {
-      // refetchInterval : 5000,
+      refetchInterval: 1000,
     }
   );
 
   console.log(data);
 
   const todayObj: any = data ? data[0] : {};
-  // const today = data[0]
 
-  const BaseUrl : any = tickersData?.quotes.USD;
+  const BaseUrl: any = tickersData?.quotes.USD;
 
   return (
     <div>
       {isLoading ? (
         "Price Loading..."
       ) : (
-        // <div>{data?.map((price) => price.close)}</div>
         <>
-          <OverviewItem>
-            <span>시가</span>
-            <span>{todayObj.open.toFixed(3)}</span>
-            <span>고가</span>
-            <span>{todayObj.high.toFixed(3)}</span>
-            <span>저가</span>
-            <span>{todayObj.low.toFixed(3)}</span>
-            <span>종가</span>
-            <span>{todayObj.close.toFixed(3)}</span>
-          </OverviewItem>
+          <Overview>
+            <OverviewItem>
+              <h3>시가</h3>
+              <span>{`$ ${todayObj.open.toFixed(3)}`}</span>
+              <h3>고가</h3>
+              <span>{`$ ${todayObj.high.toFixed(3)}`}</span>
+              <h3>저가</h3>
+              <span>{`$ ${todayObj.low.toFixed(3)}`}</span>
+              <h3>종가</h3>
+              <span>{`$ ${todayObj.close.toFixed(3)}`}</span>
+            </OverviewItem>
+          </Overview>
           <RowOverviewItem>
-            <span>percent_change_15m</span>
+            <span>15 mimute</span>
             <span>{`${BaseUrl.percent_change_15m} %`}</span>
           </RowOverviewItem>
           <RowOverviewItem>
-            <span>percent_change_30m</span>
+            <span>30 mimute</span>
             <span>{`${BaseUrl.percent_change_30m} %`}</span>
           </RowOverviewItem>
           <RowOverviewItem>
-            <span>percent_change_1h</span>
+            <span>1 hour</span>
             <span>{`${BaseUrl.percent_change_1h} %`}</span>
           </RowOverviewItem>
           <RowOverviewItem>
-            <span>percent_change_12h</span>
+            <span>12 hour</span>
             <span>{`${BaseUrl.percent_change_12h} %`}</span>
           </RowOverviewItem>
           <RowOverviewItem>
-            <span>percent_change_24h</span>
+            <span>24 hour</span>
             <span>{`${BaseUrl.percent_change_24h} %`}</span>
           </RowOverviewItem>
         </>
