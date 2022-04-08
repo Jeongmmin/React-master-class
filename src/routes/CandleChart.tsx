@@ -67,6 +67,7 @@ function Chart() {
               toolbar: {
                 show: false,
               },
+              background: "transparent",
             },
             grid: {
               show: false,
