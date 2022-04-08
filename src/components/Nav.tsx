@@ -127,7 +127,7 @@ function Nav() {
   return (
     <Navbar>
       <HomeBtn>
-        <a href="/">HOME</a>
+        <a href="/bit-ghost">HOME</a>
       </HomeBtn>
       <Switch className="switch">
         <Input type="checkbox" onClick={toggleDarkAtom} />
