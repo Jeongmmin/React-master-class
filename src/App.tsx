@@ -2,12 +2,14 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Nav from "./components/Nav";
-import { darkTheme, lightTheme } from './theme';
-import { useState } from 'react';
+import { darkTheme, lightTheme} from './theme';
+import { useRecoilValue } from 'recoil';
+import { isDarkAtom } from './atom';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,700;1,400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,700;1,400&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400&display=swap');
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -40,7 +42,8 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
   /* font-family: 'Source Sans Pro', sans-serif; */
-  font-family: 'PT Sans', sans-serif;
+  /* font-family: 'PT Sans', sans-serif; */
+  font-family: 'Titillium Web', sans-serif;
   font-weight: 400;
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
@@ -65,22 +68,20 @@ table {
 }
 a {
   text-decoration: none;
-  color: inherit;
+  color: ${(props) => props.theme.textColor};
 }
 `;
 
 function App() {
   
-  const [isDark, setIsDark] = useState(false)
-
-  const toggleDark = () => setIsDark(current => !current)
+  const isDark = useRecoilValue(isDarkAtom)
 
   return (
     <>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <ThemeProvider theme={isDark? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Nav toggleDark={toggleDark}/>
-      <Router toggleDark={toggleDark}/>
+      <Nav />
+      <Router />
       <ReactQueryDevtools />
       </ThemeProvider>
     </>

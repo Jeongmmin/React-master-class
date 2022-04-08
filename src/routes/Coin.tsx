@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -31,8 +31,6 @@ const Header = styled.header`
   }
 `;
 
-
-
 const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
   font-size: 48px;
@@ -41,7 +39,7 @@ const Title = styled.h1`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.cardBgColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
@@ -50,7 +48,7 @@ const OverviewItem = styled.div`
   flex-direction: column;
   align-items: center;
   span:first-child {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -58,6 +56,8 @@ const OverviewItem = styled.div`
 `;
 const Description = styled.p`
   margin: 20px 0px;
+  padding: 0 10px;
+  line-height: 1.4;
 `;
 
 const Tabs = styled.div`
@@ -70,21 +70,35 @@ const Tabs = styled.div`
 const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 7px 0px;
+  background-color: ${(props) => props.theme.cardBgColor};
+  padding: 10px 0px;
   border-radius: 10px;
   color: ${(props) =>
     props.isActive ? props.theme.accentColor : props.theme.textColor};
+  :hover {
+    background-color: ${(props) => props.theme.accentColor};
+  }
   a {
     display: block;
+    color: ${(props) =>
+      props.isActive ? props.theme.accentColor : props.theme.textColor};
+    :hover {
+      color: ${(props) => props.theme.textColor};
+    }
   }
 `;
 
 const Loader = styled.div`
   display: block;
   text-align: center;
+`;
+
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 `;
 
 interface RouterState {
@@ -165,7 +179,7 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId!),
     {
-      refetchInterval : 5000,
+      refetchInterval: 5000,
     }
   );
 
@@ -174,14 +188,17 @@ function Coin() {
   return (
     <Container>
       <HelmetProvider>
-      <Helmet>
-        <title>
-          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
-        </title>
-      </Helmet>
+        <Helmet>
+          <title>
+            {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+          </title>
+        </Helmet>
       </HelmetProvider>
       <Header>
         <Title>
+          <Img
+            src={`https://cryptocurrencyliveprices.com/img/${coinId}.png`}
+          ></Img>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
       </Header>
@@ -200,7 +217,12 @@ function Coin() {
             </OverviewItem>
             <OverviewItem>
               <span>Price :</span>
-              <span>$ {tickersData?.quotes.USD.price.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+              <span>
+                ${" "}
+                {tickersData?.quotes.USD.price
+                  .toFixed(3)
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>

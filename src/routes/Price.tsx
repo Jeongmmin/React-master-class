@@ -42,36 +42,42 @@ interface PriceData {
 }
 
 const Overview = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.cardBgColor};
   padding: 20px;
   border-radius: 10px;
+  margin-bottom: 20px;
 `;
 const OverviewItem = styled.div`
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   justify-content: space-between;
-  /* span {
-      border-right: 1px solid white;
-    font-size: 10px;
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  } */
   h3 {
-    color: #f6e58d;
+    color: ${(props) => props.theme.priceTitleColor};
   }
 `;
 
 const RowOverviewItem = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
+  background-color: ${(props) => props.theme.cardBgColor};
+  padding: 20px 20px;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-bottom: 10px;
+  span:first-child {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: ${(props) => props.theme.priceTitleColor};
+  }
+  span:last-child {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
 `;
 
 function Price() {
@@ -133,6 +139,32 @@ function Price() {
             <span>24 hour</span>
             <span>{`${BaseUrl.percent_change_24h} %`}</span>
           </RowOverviewItem>
+          <RowOverviewItem>
+            <span>현재 시세</span>
+            <span>{`${BaseUrl.price
+              .toFixed(3)
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span>
+          </RowOverviewItem>
+          <RowOverviewItem>
+            <span>지난 24시간 거래량</span>
+            <span>{`${BaseUrl.volume_24h
+              .toFixed(3)
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span>
+          </RowOverviewItem>
+          <RowOverviewItem>
+            <span>지난 24시간 거래 변동률</span>
+            <span>{`${BaseUrl.volume_24h_change_24h} %`}</span>
+          </RowOverviewItem>
+          <RowOverviewItem>
+            <span>시총</span>
+            <span>{`${BaseUrl.market_cap
+              .toFixed(3)
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span>
+          </RowOverviewItem>
+          <RowOverviewItem>
+            <span>시총 가격 변동률</span>
+            <span>{`${BaseUrl.market_cap_change_24h} %`}</span>
+          </RowOverviewItem>
         </>
       )}
     </div>
@@ -149,3 +181,21 @@ export default Price;
 //   close: number;
 //   volume: number;
 //   market_cap: number;
+
+// ath_date: string;
+//       ath_price: number;
+//       market_cap: number;
+//       market_cap_change_24h: number;
+//       percent_change_1h: number;
+//       percent_change_1y: number;
+//       percent_change_6h: number;
+//       percent_change_7d: number;
+//       percent_change_12h: number;
+//       percent_change_15m: number;
+//       percent_change_24h: number;
+//       percent_change_30d: number;
+//       percent_change_30m: number;
+//       percent_from_price_ath: number;
+//       price: number;
+//       volume_24h: number;
+//       volume_24h_change_24h: number;

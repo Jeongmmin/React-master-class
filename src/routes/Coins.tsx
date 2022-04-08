@@ -20,7 +20,7 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.h1`
-  background-color: white;
+  background-color:  ${(props) => props.theme.cardBgColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
@@ -30,6 +30,10 @@ const Coin = styled.h1`
     padding: 20px;
     transition: color 0.2s ease-in;
     align-items: center;
+  }
+
+  p { 
+    font-size:18px;
   }
 
   &:hover {
@@ -50,9 +54,9 @@ const Loader = styled.div`
 `;
 
 const Img = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  margin-right: 20px;
 `;
 
 interface ICoin {
@@ -65,9 +69,6 @@ interface ICoin {
   type: string;
 }
 
-interface IRouterProps {
-  toggleDark: ()=> void;
-}
 
 
 // interface PriceData {
@@ -79,7 +80,7 @@ interface IRouterProps {
 //   };
 // }
 
-function Coins({ toggleDark }: IRouterProps) {
+function Coins() {
   // const { coinId } = useParams();
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
 
@@ -114,7 +115,7 @@ function Coins({ toggleDark }: IRouterProps) {
                 <Img
                   src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
                 ></Img>
-                {coin.name} &rarr;
+                <p>{coin.name} &rarr;</p>
               </Link>
               <div></div>
             </Coin>

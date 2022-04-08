@@ -4,12 +4,16 @@ import { DefaultTheme } from 'styled-components'
 
 export const darkTheme:DefaultTheme = {
   bgColor: '#2f3640',
-  textColor: '#f5f6fa',
-  accentColor: "#ffb8b8",
+  textColor: "white",
+  accentColor: "#9c88ff",
+  cardBgColor: "rgba(0, 0, 0, 0.3)",
+  priceTitleColor: "#f6e58d",
 }
 
 export const lightTheme:DefaultTheme = {
   bgColor: 'whitesmoke',
-  textColor: 'black',
-  accentColor: "#ffb8b8",
+  textColor: "black",
+  accentColor: "#9c88ff",
+  cardBgColor: "white",
+  priceTitleColor: "#f3a683",
 }
