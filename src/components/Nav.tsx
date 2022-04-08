@@ -9,11 +9,17 @@ const Navbar = styled.div`
   align-items: center;
 `;
 
-function Nav() {
+interface IRouterProps {
+  toggleDark: ()=> void;
+}
+
+function Nav({ toggleDark }: IRouterProps) {
+
+
   return (
     <Navbar>
       <span><a href="/">HOME</a></span>
-      <button>dark</button>
+      <button onClick={toggleDark}>dark</button>
     </Navbar>
   )
 }

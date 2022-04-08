@@ -61,7 +61,7 @@ function Chart() {
               tickPlacement: "between",
               axisBorder: { show: false },
               axisTicks: { show: false },
-              labels: { show: true },
+              labels: { show: false },
             },
             yaxis: {
               labels: {

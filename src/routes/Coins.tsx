@@ -21,7 +21,7 @@ const CoinsList = styled.ul``;
 
 const Coin = styled.h1`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
 
@@ -65,6 +65,11 @@ interface ICoin {
   type: string;
 }
 
+interface IRouterProps {
+  toggleDark: ()=> void;
+}
+
+
 // interface PriceData {
 //   quotes: {
 //     USD: {
@@ -74,7 +79,7 @@ interface ICoin {
 //   };
 // }
 
-function Coins() {
+function Coins({ toggleDark }: IRouterProps) {
   // const { coinId } = useParams();
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
 

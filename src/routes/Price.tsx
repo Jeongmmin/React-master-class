@@ -61,7 +61,7 @@ const OverviewItem = styled.div`
     margin-bottom: 5px;
   } */
   h3 {
-    color: #c776ed;
+    color: #f6e58d;
   }
 `;
 

@@ -67,18 +67,23 @@ function Chart() {
               show: false,
             },
             plotOptions: {
+              bar : {
+                columnWidth: '150%',
+              },
               candlestick: {
                 colors: {
-                  upward: "#4c91da",
-                  downward: "#ed79ca",
+                  upward: "#ff7979",
+                  downward: "#3498db",
                 },
               },
             },
 
             xaxis: {
               type: "datetime",
-              labels: { show: true },
+              labels: { show: false },
               axisTicks: { show: false },
+              tickPlacement: "between",
+              axisBorder: { show: false },
             },
             yaxis: {
               labels: {
