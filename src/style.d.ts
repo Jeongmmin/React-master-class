@@ -8,5 +8,6 @@ declare module 'styled-components' {
     accentColor: string;
     cardBgColor: string;
     priceTitleColor: string;
+    homeBtnColor: string;
     };
   }

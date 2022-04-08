@@ -78,7 +78,11 @@ const Tab = styled.span<{ isActive: boolean }>`
   color: ${(props) =>
     props.isActive ? props.theme.accentColor : props.theme.textColor};
   :hover {
-    background-color: ${(props) => props.theme.accentColor};
+    background-color: rgba(156, 136, 255, 0.5);
+    color: whitesmoke;
+    a {
+      color: ${(props) => props.theme.textColor};
+    }
   }
   a {
     display: block;

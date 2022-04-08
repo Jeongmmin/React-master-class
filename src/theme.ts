@@ -8,6 +8,7 @@ export const darkTheme:DefaultTheme = {
   accentColor: "#9c88ff",
   cardBgColor: "rgba(0, 0, 0, 0.3)",
   priceTitleColor: "#f6e58d",
+  homeBtnColor: "rgba(2, 0, 10, 0.69)",
 }
 
 export const lightTheme:DefaultTheme = {
@@ -16,4 +17,5 @@ export const lightTheme:DefaultTheme = {
   accentColor: "#9c88ff",
   cardBgColor: "white",
   priceTitleColor: "#f3a683",
+  homeBtnColor: "#d8d8d89f",
 }

@@ -53,6 +53,7 @@ const OverviewItem = styled.div`
   font-size: 12px;
   font-weight: 600;
   justify-content: space-between;
+  padding: 10px;
   h3 {
     color: ${(props) => props.theme.priceTitleColor};
   }
@@ -95,7 +96,7 @@ function Price() {
     }
   );
 
-  console.log(data);
+  // console.log(data);
 
   const todayObj: any = data ? data[0] : {};
 
@@ -113,6 +114,8 @@ function Price() {
               <span>{`$ ${todayObj.open.toFixed(3)}`}</span>
               <h3>고가</h3>
               <span>{`$ ${todayObj.high.toFixed(3)}`}</span>
+            </OverviewItem>
+            <OverviewItem>
               <h3>저가</h3>
               <span>{`$ ${todayObj.low.toFixed(3)}`}</span>
               <h3>종가</h3>

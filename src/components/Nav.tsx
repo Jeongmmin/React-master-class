@@ -27,14 +27,14 @@ const Switch = styled.label`
 
 const HomeBtn = styled.span`
   display: inline-block;
-  padding: 10px 12px;
-  background-color:none;
-  border: none;
+  padding: 11px 12px;
+  background-color: ${(props) => props.theme.homeBtnColor};;
   border-radius: 30px;
   transition: all 0.2s ease-in;
   position: relative;
   overflow: hidden;
   font-size: 15px;
+  font-weight: 600;
   z-index: 1;
   a {
     padding: 3px;
@@ -61,26 +61,25 @@ const HomeBtn = styled.span`
     top: 180%;
     width: 160%;
     height: 190%;
-    background-color: #9453e9;
+    background-color: rgba(148, 83, 233, 0.8);
     border-radius: 50%;
     display: block;
     transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
   }
   :hover {
-    /* border: 1px solid #9889ff; */
     a {
       color: white;
     }
   }
   :hover:before {
     top: -35%;
-    background-color: #9889ff;
+    background-color: rgba(152, 137, 255, 0.8);
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
     }
     :hover:after {
     top: -45%;
-    background-color: #9889ff;
+    background-color: rgba(152, 137, 255, 0.8);
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
     }
 `;
