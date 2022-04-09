@@ -12,13 +12,12 @@
 <div align="center">   
     
     
-  💡 사이트 이동하기 💡  
+💡 사이트 이동하기 💡  
   
 
-   [🔗 Bit-Ghost 앱](https://jeongmmin.github.io/bit-ghost/)
+[🔗 Bit-Ghost 앱](https://jeongmmin.github.io/bit-ghost/)
   
- 
-  (ctrl + click 시 새창으로 열기)
+(ctrl + click 시 새창으로 열기)
   
 </div>
 
