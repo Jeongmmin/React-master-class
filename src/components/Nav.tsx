@@ -79,12 +79,12 @@ const HomeBtn = styled.span`
     top: -35%;
     background-color: rgba(152, 137, 255, 0.8);
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-    }
-    :hover:after {
+  }
+  :hover:after {
     top: -45%;
     background-color: rgba(152, 137, 255, 0.8);
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-    }
+  }
 `;
 
 const Input = styled.input`

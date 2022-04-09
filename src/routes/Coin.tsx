@@ -12,14 +12,12 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { HTMLAttributes } from "react";
 // import LineChart from './LineChart';
 
-
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
   margin: 0 auto;
   /* height: 80vh; */
 `;
-
 
 const Header = styled.header`
   height: 15vh;
@@ -61,7 +59,8 @@ const OverviewItem = styled.div`
 `;
 
 const PriceValue = styled.span<IItemProps>`
-  color: ${(props) => (props.isNegative ? props.theme.downwardColor : props.theme.upwardColor)};
+  color: ${(props) =>
+    props.isNegative ? props.theme.downwardColor : props.theme.upwardColor};
 `;
 
 const Description = styled(Overview)`

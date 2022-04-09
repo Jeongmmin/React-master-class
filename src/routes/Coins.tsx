@@ -33,16 +33,14 @@ const Header = styled.header`
   margin-bottom: 20px;
 `;
 
-const CoinsList = styled.ul`
-  
-`;
+const CoinsList = styled.ul``;
 
 const Coin = styled.h1`
   background-color: ${(props) => props.theme.cardBgColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
-  animation: ${ShowAnimation} 0.2s linear ;
+  animation: ${ShowAnimation} 0.2s linear;
 
   a {
     display: flex;

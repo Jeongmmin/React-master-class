@@ -84,13 +84,11 @@ const ShowAnimation = keyframes`
   }
 `;
 
-
 const Overview = styled.div`
   background-color: ${(props) => props.theme.cardBgColor};
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-
 `;
 const OverviewItem = styled.div`
   display: flex;
@@ -110,7 +108,7 @@ const RowOverviewItem = styled.div`
   padding: 20px 20px;
   border-radius: 10px;
   margin-bottom: 10px;
-  animation: ${ShowAnimation} 0.4s linear ;
+  animation: ${ShowAnimation} 0.4s linear;
   span:first-child {
     font-size: 14px;
     text-transform: uppercase;
@@ -123,8 +121,9 @@ const RowOverviewItem = styled.div`
 `;
 
 const PriceValue = styled.span<IItemProps>`
-  color: ${(props) => (props.isNegative ? props.theme.downwardColor : props.theme.upwardColor)};
-  /* color: ${props => props.isNegative ? "#8c8989" : "#ff5778"}; */
+  color: ${(props) =>
+    props.isNegative ? props.theme.downwardColor : props.theme.upwardColor};
+  /* color: ${(props) => (props.isNegative ? "#8c8989" : "#ff5778")}; */
 `;
 
 function Price() {

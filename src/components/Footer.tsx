@@ -11,16 +11,15 @@ const FooterdBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 100px;
-  bottom:0;
+  bottom: 0;
   width: 100%;
   /* position: absolute; */
 `;
 
-
 function Footer() {
   return (
-  <FooterdBox>
-    <p>© 👻 BitGoast</p>
+    <FooterdBox>
+      <p>© 👻 BitGoast</p>
     </FooterdBox>
   );
 }

@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
-import { useRecoilValue } from 'recoil';
-import { isDarkAtom } from '../atom';
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atom";
 
 interface ChartProps {
   coinId: string;
@@ -21,8 +21,7 @@ interface IHistorical {
 }
 
 function CandleChart() {
-
-  const isDark = useRecoilValue(isDarkAtom)
+  const isDark = useRecoilValue(isDarkAtom);
 
   const { coinId } = useOutletContext<ChartProps>();
 
@@ -73,8 +72,8 @@ function CandleChart() {
               show: false,
             },
             plotOptions: {
-              bar : {
-                columnWidth: '150%',
+              bar: {
+                columnWidth: "150%",
               },
               candlestick: {
                 colors: {
