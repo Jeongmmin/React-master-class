@@ -9,5 +9,7 @@ declare module 'styled-components' {
     cardBgColor: string;
     priceTitleColor: string;
     homeBtnColor: string;
+    upwardColor : string;
+    downwardColor : string;
     };
   }

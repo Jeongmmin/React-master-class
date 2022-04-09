@@ -20,7 +20,7 @@ interface IHistoricalData {
   market_cap: number;
 }
 
-function Chart() {
+function LineChart() {
 
   const isDark = useRecoilValue(isDarkAtom)
 
@@ -92,4 +92,4 @@ function Chart() {
   );
 }
 
-export default Chart;
+export default LineChart;

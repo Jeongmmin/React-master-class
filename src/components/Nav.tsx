@@ -9,6 +9,7 @@ const Navbar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 10vh;
 `;
 
 const Switch = styled.label`
@@ -27,8 +28,8 @@ const Switch = styled.label`
 
 const HomeBtn = styled.span`
   display: inline-block;
-  padding: 11px 12px;
-  background-color: ${(props) => props.theme.homeBtnColor};;
+  padding: 14px 0px;
+  background-color: ${(props) => props.theme.homeBtnColor};
   border-radius: 30px;
   transition: all 0.2s ease-in;
   position: relative;
@@ -37,7 +38,9 @@ const HomeBtn = styled.span`
   font-weight: 600;
   z-index: 1;
   a {
-    padding: 3px;
+    padding: 20px 14px;
+    box-sizing: border-box;
+    color: ${(props) => props.theme.textColor};
   }
   ::before {
     content: "";
@@ -129,7 +132,7 @@ function Nav() {
         <a href="/bit-ghost">HOME</a>
       </HomeBtn>
       <Switch className="switch">
-        <Input type="checkbox" onClick={toggleDarkAtom} />
+        <Input key="isDark" type="checkbox" onClick={toggleDarkAtom} />
         <Slider className="slider"></Slider>
       </Switch>
     </Navbar>

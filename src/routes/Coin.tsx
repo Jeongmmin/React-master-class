@@ -9,11 +9,15 @@ import {
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { HTMLAttributes } from "react";
+// import LineChart from './LineChart';
+
 
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
   margin: 0 auto;
+  /* height: 80vh; */
 `;
 
 const Header = styled.header`
@@ -21,6 +25,7 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
   a {
     /* display: flex; */
     font-size: 40px;
@@ -42,6 +47,7 @@ const Overview = styled.div`
   background-color: ${(props) => props.theme.cardBgColor};
   padding: 10px 20px;
   border-radius: 10px;
+  line-height: 1.2;
 `;
 const OverviewItem = styled.div`
   display: flex;
@@ -52,12 +58,20 @@ const OverviewItem = styled.div`
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 5px;
+    color: ${(props) => props.theme.priceTitleColor};
   }
 `;
-const Description = styled.p`
+
+const PriceValue = styled.span<IItemProps>`
+  color: ${(props) => (props.isNegative ? props.theme.downwardColor : props.theme.upwardColor)};
+`;
+
+const Description = styled(Overview)`
   margin: 20px 0px;
-  padding: 0 10px;
+  padding: 10px;
   line-height: 1.4;
+  height: 8vh;
+  overflow: auto;
 `;
 
 const Tabs = styled.div`
@@ -71,15 +85,14 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: 400;
   background-color: ${(props) => props.theme.cardBgColor};
-  padding: 10px 0px;
   border-radius: 10px;
   color: ${(props) =>
     props.isActive ? props.theme.accentColor : props.theme.textColor};
   :hover {
     background-color: rgba(156, 136, 255, 0.5);
     color: whitesmoke;
+    transition: 0.6s;
     a {
       color: ${(props) => props.theme.textColor};
     }
@@ -88,6 +101,7 @@ const Tab = styled.span<{ isActive: boolean }>`
     display: block;
     color: ${(props) =>
       props.isActive ? props.theme.accentColor : props.theme.textColor};
+    padding: 10px;
     :hover {
       color: ${(props) => props.theme.textColor};
     }
@@ -109,6 +123,10 @@ interface RouterState {
   state: {
     name: string;
   };
+}
+
+interface IItemProps extends HTMLAttributes<HTMLDivElement> {
+  isNegative: boolean;
 }
 
 interface InfoData {
@@ -166,6 +184,25 @@ interface PriceData {
       volume_24h: number;
       volume_24h_change_24h: number;
     };
+    // KRW: {
+    //   price: number;
+    //   volume_24h: number;
+    //   volume_24h_change_24h: number;
+    //   market_cap: number;
+    //   market_cap_change_24h: number;
+    //   percent_change_15m: number;
+    //   percent_change_30m: number;
+    //   percent_change_1h: number;
+    //   percent_change_6h: number;
+    //   percent_change_12h: number;
+    //   percent_change_24h: number;
+    //   percent_change_7d: number;
+    //   percent_change_30d: number;
+    //   percent_change_1y: number;
+    //   ath_price: number;
+    //   ath_date: string ;
+    //   percent_from_price_ath: number;
+    // };
   };
 }
 
@@ -183,9 +220,19 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId!),
     {
-      refetchInterval: 5000,
+      refetchInterval: 1000,
     }
   );
+
+  function checkBoolean(value: number) {
+    if (Math.sign(value) === -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const BaseUrl: any = tickersData?.quotes.USD;
 
   const loading = infoLoading || tickersLoading;
 
@@ -212,7 +259,7 @@ function Coin() {
         <>
           <Overview>
             <OverviewItem>
-              <span>Rank 🏆</span>
+              <span>순위 🏆</span>
               <span>{infoData?.rank}</span>
             </OverviewItem>
             <OverviewItem>
@@ -220,29 +267,27 @@ function Coin() {
               <span>${infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Price :</span>
-              <span>
-                ${" "}
-                {tickersData?.quotes.USD.price
-                  .toFixed(3)
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </span>
+              <span>전일 대비</span>
+              <PriceValue
+                isNegative={checkBoolean(BaseUrl.percent_change_15m)}
+              >{`${BaseUrl.percent_change_15m} %`}</PriceValue>
             </OverviewItem>
           </Overview>
+          {/* <LineChart></LineChart> */}
           <Description>{infoData?.description}</Description>
           <Overview>
             <OverviewItem>
-              <span>Total Suply</span>
+              <span>현재 시세</span>
               <span>
-                {tickersData?.total_supply
+                {`$ ${BaseUrl.price
                   .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
               </span>
             </OverviewItem>
             <OverviewItem>
-              <span>Max Supply</span>
+              <span>거래량 (24h)</span>
               <span>
-                {tickersData?.max_supply
+                {BaseUrl.volume_24h
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>

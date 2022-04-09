@@ -20,7 +20,7 @@ interface IHistorical {
   market_cap: number;
 }
 
-function Chart() {
+function CandleChart() {
 
   const isDark = useRecoilValue(isDarkAtom)
 
@@ -78,8 +78,8 @@ function Chart() {
               },
               candlestick: {
                 colors: {
-                  upward: "#ff7f7f",
-                  downward: "#43b4ff",
+                  upward: "rgba(229, 98, 98, .8)",
+                  downward: "rgba(13, 109, 198, .8)",
                 },
               },
             },
@@ -108,4 +108,4 @@ function Chart() {
   );
 }
 
-export default Chart;
+export default CandleChart;
