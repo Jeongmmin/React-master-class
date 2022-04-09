@@ -10,14 +10,15 @@
 
 ## 📌 배포 사이트
 <div align="center">   
-    
-    
-💡 사이트 이동하기 💡  
   
+<br/>    
+<a href="https://jeongmmin.github.io/bit-ghost/" target="_blank"><img src="https://img.shields.io/badge/ Bit Ghost 앱-9b68f2?style=flat-square&logo=Ghostery&logoColor=white"/></a>
+<br/>    
+(ctrl + click시 새창열기 가능)    
+      
 
-[🔗 Bit-Ghost 앱](https://jeongmmin.github.io/bit-ghost/)
-  
-(ctrl + click 시 새창으로 열기)
+<!-- [🔗 Bit-Ghost 앱](https://jeongmmin.github.io/bit-ghost/) -->
+
   
 </div>
 
