@@ -20,6 +20,7 @@ const Container = styled.div`
   /* height: 80vh; */
 `;
 
+
 const Header = styled.header`
   height: 15vh;
   display: flex;
@@ -27,12 +28,9 @@ const Header = styled.header`
   align-items: center;
   margin-bottom: 20px;
   a {
-    /* display: flex; */
     font-size: 40px;
-    /* justify-content:left */
   }
   h1 {
-    /* justify-content: center; */
   }
 `;
 
@@ -70,7 +68,7 @@ const Description = styled(Overview)`
   margin: 20px 0px;
   padding: 10px;
   line-height: 1.4;
-  height: 8vh;
+  height: 10vh;
   overflow: auto;
 `;
 
@@ -306,7 +304,6 @@ function Coin() {
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
-
           <Outlet context={{ coinId }} />
         </>
       )}

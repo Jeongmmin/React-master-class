@@ -26,6 +26,7 @@ interface IItemProps extends HTMLAttributes<HTMLDivElement> {
 interface PriceData {
   total_supply: number;
   max_supply: number;
+  circulating_supply: number;
   quotes: {
     USD: {
       ath_date: string;
@@ -185,8 +186,8 @@ function Price() {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span>
           </RowOverviewItem>
           <RowOverviewItem>
-            <span>최대 발행량</span>
-            <span>{`${tickersData?.max_supply
+            <span>현재 유통량</span>
+            <span>{`${tickersData?.circulating_supply
               .toFixed(3)
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span>
           </RowOverviewItem>

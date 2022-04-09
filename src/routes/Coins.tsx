@@ -141,7 +141,7 @@ function Coins() {
     <Container>
       <HelmetProvider>
         <Helmet>
-          <title>👻 BitGoast</title>
+          <title>BitGoast</title>
         </Helmet>
       </HelmetProvider>
       <Header>

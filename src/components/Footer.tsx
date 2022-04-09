@@ -1,5 +1,10 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
+// const FooterWrapper = styled.div`
+//   min-height:200px;
+//   position:relative;
+//   width:100%;
+// `;
 
 const FooterdBox = styled.div`
   display: flex;
@@ -7,13 +12,17 @@ const FooterdBox = styled.div`
   align-items: center;
   height: 100px;
   bottom:0;
+  width: 100%;
   /* position: absolute; */
 `;
 
+
 function Footer() {
-  return <FooterdBox>
+  return (
+  <FooterdBox>
     <p>© 👻 BitGoast</p>
-    </FooterdBox>;
+    </FooterdBox>
+  );
 }
 
 export default Footer;
