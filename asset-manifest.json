@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/bit-ghost/static/js/main.9a77e63d.js",
+    "main.js": "/bit-ghost/static/js/main.ec26863f.js",
     "index.html": "/bit-ghost/index.html",
-    "main.9a77e63d.js.map": "/bit-ghost/static/js/main.9a77e63d.js.map"
+    "main.ec26863f.js.map": "/bit-ghost/static/js/main.ec26863f.js.map"
   },
   "entrypoints": [
-    "static/js/main.9a77e63d.js"
+    "static/js/main.ec26863f.js"
   ]
 }
