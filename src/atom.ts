@@ -8,3 +8,10 @@ export const isDarkAtom = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
+
+
+export const CheckedState = atom({
+  key: "checked",
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+})
