@@ -10,31 +10,15 @@ import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { HTMLAttributes } from "react";
-// import LineChart from './LineChart';
+import { Container, Header, Img, Loader, Title } from './Coins';
 
-const Container = styled.div`
-  padding: 0px 20px;
-  max-width: 480px;
-  margin: 0 auto;
-  /* height: 80vh; */
-`;
 
-const Header = styled.header`
-  height: 15vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+const CoinHeader = styled(Header)`
   a {
     font-size: 40px;
   }
   h1 {
   }
-`;
-
-const Title = styled.h1`
-  color: ${(props) => props.theme.accentColor};
-  font-size: 48px;
 `;
 
 const Overview = styled.div`
@@ -105,16 +89,6 @@ const Tab = styled.span<{ isActive: boolean }>`
   }
 `;
 
-const Loader = styled.div`
-  display: block;
-  text-align: center;
-`;
-
-const Img = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
-`;
 
 interface RouterState {
   state: {
@@ -122,7 +96,7 @@ interface RouterState {
   };
 }
 
-interface IItemProps extends HTMLAttributes<HTMLDivElement> {
+export interface IItemProps extends HTMLAttributes<HTMLDivElement> {
   isNegative: boolean;
 }
 
@@ -150,7 +124,7 @@ interface InfoData {
   last_data_at: string;
 }
 
-interface PriceData {
+export interface PriceData {
   id: string;
   name: string;
   symbol: string;
@@ -242,14 +216,14 @@ function Coin() {
           </title>
         </Helmet>
       </HelmetProvider>
-      <Header>
+      <CoinHeader>
         <Title>
           <Img
             src={`https://cryptocurrencyliveprices.com/img/${coinId}.png`}
           ></Img>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
-      </Header>
+      </CoinHeader>
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (

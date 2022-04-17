@@ -1,88 +1,12 @@
-import { HTMLAttributes } from "react";
 import { useQuery } from "react-query";
 import { useOutletContext } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { fetchCoinTickers, fetchCoinToday } from "../api";
+import { ChartProps, IHistorical } from './CandleChart';
+import { IItemProps, PriceData } from './Coin';
+import { ShowAnimation } from './Coins';
 
-interface ChartProps {
-  coinId: string;
-}
 
-interface IHistoricalData {
-  time_open: string;
-  time_close: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-  market_cap: number;
-}
-
-interface IItemProps extends HTMLAttributes<HTMLDivElement> {
-  isNegative: boolean;
-}
-
-interface PriceData {
-  total_supply: number;
-  max_supply: number;
-  circulating_supply: number;
-  quotes: {
-    USD: {
-      ath_date: string;
-      ath_price: number;
-      market_cap: number;
-      market_cap_change_24h: number;
-      percent_change_1h: number;
-      percent_change_1y: number;
-      percent_change_6h: number;
-      percent_change_7d: number;
-      percent_change_12h: number;
-      percent_change_15m: number;
-      percent_change_24h: number;
-      percent_change_30d: number;
-      percent_change_30m: number;
-      percent_from_price_ath: number;
-      price: number;
-      volume_24h: number;
-      volume_24h_change_24h: number;
-    };
-    // KRW: {
-    //   price: number;
-    //   volume_24h: number;
-    //   volume_24h_change_24h: number;
-    //   market_cap: number;
-    //   market_cap_change_24h: number;
-    //   percent_change_15m: number;
-    //   percent_change_30m: number;
-    //   percent_change_1h: number;
-    //   percent_change_6h: number;
-    //   percent_change_12h: number;
-    //   percent_change_24h: number;
-    //   percent_change_7d: number;
-    //   percent_change_30d: number;
-    //   percent_change_1y: number;
-    //   ath_price: number;
-    //   ath_date: string ;
-    //   percent_from_price_ath: number;
-    // };
-  };
-}
-
-const ShowAnimation = keyframes`
-  0% {
-    transform: translateY(-1px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  100% {
-    transform: none;
-    opacity: 1;
-  }
-`;
 
 const Overview = styled.div`
   background-color: ${(props) => props.theme.cardBgColor};
@@ -123,12 +47,11 @@ const RowOverviewItem = styled.div`
 const PriceValue = styled.span<IItemProps>`
   color: ${(props) =>
     props.isNegative ? props.theme.downwardColor : props.theme.upwardColor};
-  /* color: ${(props) => (props.isNegative ? "#8c8989" : "#ff5778")}; */
 `;
 
 function Price() {
   const { coinId } = useOutletContext<ChartProps>();
-  const { isLoading, data } = useQuery<IHistoricalData[]>(
+  const { isLoading, data } = useQuery<IHistorical[]>(
     ["today", coinId],
     () => fetchCoinToday(coinId)
   );
@@ -155,7 +78,6 @@ function Price() {
     }
   }
 
-  // console.log(Math.sign(BaseUrl.percent_change_15m))
 
   return (
     <div>

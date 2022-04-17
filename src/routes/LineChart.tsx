@@ -4,31 +4,21 @@ import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "../atom";
+import { ChartProps, IHistorical } from './CandleChart';
 
-interface ChartProps {
-  coinId: string;
-}
 
-interface IHistoricalData {
-  time_open: string;
-  time_close: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-  market_cap: number;
-}
 
 function LineChart() {
   const isDark = useRecoilValue(isDarkAtom);
 
   const { coinId } = useOutletContext<ChartProps>();
 
-  const { isLoading, data } = useQuery<IHistoricalData[]>(
+  const { isLoading, data } = useQuery<IHistorical[]>(
     ["ohlcv", coinId],
     () => fetchCoinHistory(coinId)
   );
+
+  
   return (
     <div>
       {isLoading ? (

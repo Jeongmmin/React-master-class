@@ -5,11 +5,11 @@ import ApexChart from "react-apexcharts";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "../atom";
 
-interface ChartProps {
+export interface ChartProps {
   coinId: string;
 }
 
-interface IHistorical {
+export interface IHistorical {
   time_open: string;
   time_close: string;
   open: number;
