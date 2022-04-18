@@ -72,13 +72,13 @@ function CandleChart() {
               show: false,
             },
             plotOptions: {
-              bar: {
-                columnWidth: "150%",
-              },
+              // bar: {
+              //   columnWidth: "150%",
+              // },
               candlestick: {
                 colors: {
-                  upward: "rgba(229, 98, 98, .8)",
-                  downward: "rgba(13, 109, 198, .8)",
+                  upward: "#ff5895",
+                  downward: "#0088ff",
                 },
               },
             },

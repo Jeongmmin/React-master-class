@@ -240,8 +240,8 @@ function Coin() {
             <OverviewItem>
               <span>전일 대비</span>
               <PriceValue
-                isNegative={checkBoolean(BaseUrl.percent_change_15m)}
-              >{`${BaseUrl.percent_change_15m} %`}</PriceValue>
+                isNegative={checkBoolean(BaseUrl.percent_change_24h)}
+              >{`${BaseUrl.percent_change_24h} %`}</PriceValue>
             </OverviewItem>
           </Overview>
           {/* <LineChart></LineChart> */}
