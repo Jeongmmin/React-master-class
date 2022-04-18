@@ -20,7 +20,6 @@
 (ctrl + click시 새창열기 가능)    
       
 
-<!-- [🔗 Bit-Ghost 앱](https://jeongmmin.github.io/bit-ghost/) -->
 
   
 </div>
