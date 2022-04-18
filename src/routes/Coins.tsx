@@ -110,7 +110,7 @@ function Coins() {
           {data?.slice(0, 200).map((coin) => (
             <Coin key={coin.id}>
               <Link
-                to={`/${coin.id}`}
+                to={`/${coin.id}/line-chart`}
                 state={{ name: coin.name, rank: coin.rank }}
               >
                 <Img
