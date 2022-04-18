@@ -123,7 +123,6 @@ const Slider = styled.span`
 
 function Nav() {
 
-  // const [isChecked, setIsChecked] = useState(false);
   const [Checked, setChecked] = useRecoilState(CheckedState);
 
   const setDarkAtom = useSetRecoilState(isDarkAtom);
