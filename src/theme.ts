@@ -20,6 +20,6 @@ export const lightTheme:DefaultTheme = {
   cardBgColor: "white",
   priceTitleColor: "#929598",
   homeBtnColor: "#d8d8d89f",
-  upwardColor : "#ff5778",
-  downwardColor : "#6ab8fc",
+  upwardColor : "#ff5895",
+  downwardColor : "#0088ff",
 }
