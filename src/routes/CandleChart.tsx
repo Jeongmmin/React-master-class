@@ -89,10 +89,17 @@ function CandleChart() {
               axisTicks: { show: false },
               tickPlacement: "between",
               axisBorder: { show: false },
+              tooltip: {
+                enabled: true,
+              },
             },
             yaxis: {
+              tooltip: {
+                enabled: true,
+              },
               labels: {
                 show: false,
+                
                 formatter: function (val, index) {
                   return `$ ${val
                     .toFixed(3)
