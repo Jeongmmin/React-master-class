@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinTickers, fetchCoinToday } from "../api";
 import { ChartProps, IHistorical } from './CandleChart';
-import { IItemProps, PriceData } from './Coin';
+import { checkBoolean, IItemProps, PriceData } from './Coin';
 import { ShowAnimation } from './Coins';
 
 
@@ -46,7 +46,7 @@ const RowOverviewItem = styled.div`
 
 const PriceValue = styled.span<IItemProps>`
   color: ${(props) =>
-    props.isNegative ? props.theme.downwardColor : props.theme.upwardColor};
+    props.isPositive ? props.theme.upwardColor : props.theme.downwardColor};
 `;
 
 function Price() {
@@ -69,14 +69,6 @@ function Price() {
   const todayObj: any = data ? data[0] : {};
 
   const BaseUrl: any = tickersData?.quotes.USD;
-
-  function checkBoolean(value: number) {
-    if (Math.sign(value) === -1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
 
   return (
@@ -123,43 +115,43 @@ function Price() {
           <RowOverviewItem>
             <span>15 mimute</span>
             <PriceValue
-              isNegative={checkBoolean(BaseUrl.percent_change_15m)}
+              isPositive={checkBoolean(BaseUrl.percent_change_15m)}
             >{`${BaseUrl.percent_change_15m} %`}</PriceValue>
           </RowOverviewItem>
           <RowOverviewItem>
             <span>30 mimute</span>
             <PriceValue
-              isNegative={checkBoolean(BaseUrl.percent_change_30m)}
+              isPositive={checkBoolean(BaseUrl.percent_change_30m)}
             >{`${BaseUrl.percent_change_30m} %`}</PriceValue>
           </RowOverviewItem>
           <RowOverviewItem>
             <span>1 hour</span>
             <PriceValue
-              isNegative={checkBoolean(BaseUrl.percent_change_1h)}
+              isPositive={checkBoolean(BaseUrl.percent_change_1h)}
             >{`${BaseUrl.percent_change_1h} %`}</PriceValue>
           </RowOverviewItem>
           <RowOverviewItem>
             <span>12 hour</span>
             <PriceValue
-              isNegative={checkBoolean(BaseUrl.percent_change_12h)}
+              isPositive={checkBoolean(BaseUrl.percent_change_12h)}
             >{`${BaseUrl.percent_change_12h} %`}</PriceValue>
           </RowOverviewItem>
           <RowOverviewItem>
             <span>24 hour</span>
             <PriceValue
-              isNegative={checkBoolean(Math.sign(BaseUrl.percent_change_24h))}
+              isPositive={checkBoolean(Math.sign(BaseUrl.percent_change_24h))}
             >{`${BaseUrl.percent_change_24h} %`}</PriceValue>
           </RowOverviewItem>
           <RowOverviewItem>
             <span>지난 24시간 거래 변동률</span>
             <PriceValue
-              isNegative={checkBoolean(BaseUrl.volume_24h_change_24h)}
+              isPositive={checkBoolean(BaseUrl.volume_24h_change_24h)}
             >{`${BaseUrl.volume_24h_change_24h} %`}</PriceValue>
           </RowOverviewItem>
           <RowOverviewItem>
             <span>시총 가격 변동률</span>
             <PriceValue
-              isNegative={checkBoolean(BaseUrl.market_cap_change_24h)}
+              isPositive={checkBoolean(BaseUrl.market_cap_change_24h)}
             >{`${BaseUrl.market_cap_change_24h} %`}</PriceValue>
           </RowOverviewItem>
         </>

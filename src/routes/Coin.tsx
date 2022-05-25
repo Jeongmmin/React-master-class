@@ -44,7 +44,7 @@ const OverviewItem = styled.div`
 
 const PriceValue = styled.span<IItemProps>`
   color: ${(props) =>
-    props.isNegative ? props.theme.downwardColor : props.theme.upwardColor};
+    props.isPositive ? props.theme.upwardColor : props.theme.downwardColor};
 `;
 
 const Description = styled(Overview)`
@@ -97,7 +97,7 @@ interface RouterState {
 }
 
 export interface IItemProps extends HTMLAttributes<HTMLDivElement> {
-  isNegative: boolean;
+  isPositive: boolean;
 }
 
 interface InfoData {
@@ -176,6 +176,13 @@ export interface PriceData {
     // };
   };
 }
+export function checkBoolean(value: number) {
+  if (Math.sign(value) === 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function Coin() {
   const { coinId } = useParams();
@@ -195,13 +202,6 @@ function Coin() {
     }
   );
 
-  function checkBoolean(value: number) {
-    if (Math.sign(value) === -1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   const BaseUrl: any = tickersData?.quotes.USD;
 
@@ -240,7 +240,7 @@ function Coin() {
             <OverviewItem>
               <span>전일 대비</span>
               <PriceValue
-                isNegative={checkBoolean(BaseUrl.percent_change_24h)}
+                isPositive={checkBoolean(BaseUrl.percent_change_24h)}
               >{`${BaseUrl.percent_change_24h} %`}</PriceValue>
             </OverviewItem>
           </Overview>
