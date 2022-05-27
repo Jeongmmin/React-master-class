@@ -1,6 +1,6 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import {  CheckedState, isDarkAtom } from "../atom";
+import { CheckedState, isDarkAtom } from "../atom";
 
 const Navbar = styled.div`
   padding: 10px 20px;
@@ -122,11 +122,9 @@ const Slider = styled.span`
 `;
 
 function Nav() {
-
   const [Checked, setChecked] = useRecoilState(CheckedState);
 
   const setDarkAtom = useSetRecoilState(isDarkAtom);
-
 
   const toggleDarkAtom = () => setDarkAtom((prev: any) => !prev);
 
@@ -135,11 +133,17 @@ function Nav() {
   return (
     <Navbar>
       <HomeBtn>
-        <a href="/bit-ghost">HOME</a>
+        <a href='/bit-ghost'>HOME</a>
       </HomeBtn>
-      <Switch className="switch">
-        <Input key="isDark" type="checkbox" onClick={toggleDarkAtom} defaultChecked={Checked} onChange={toggleCheckedAtom}/>
-        <Slider className="slider"></Slider>
+      <Switch className='switch'>
+        <Input
+          key='isDark'
+          type='checkbox'
+          onClick={toggleDarkAtom}
+          defaultChecked={Checked}
+          onChange={toggleCheckedAtom}
+        />
+        <Slider className='slider'></Slider>
       </Switch>
     </Navbar>
   );

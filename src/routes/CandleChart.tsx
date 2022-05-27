@@ -50,7 +50,7 @@ function CandleChart() {
         "Loading chart..."
       ) : (
         <ApexChart
-          type="candlestick"
+          type='candlestick'
           series={[
             {
               data: todayDataArr,
@@ -99,7 +99,7 @@ function CandleChart() {
               },
               labels: {
                 show: false,
-                
+
                 formatter: function (val, index) {
                   return `$ ${val
                     .toFixed(3)

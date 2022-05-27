@@ -10,8 +10,7 @@ import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { HTMLAttributes } from "react";
-import { Container, Header, Img, Loader, Title } from './Coins';
-
+import { Container, Header, Img, Loader, Title } from "./Coins";
 
 const CoinHeader = styled(Header)`
   a {
@@ -88,7 +87,6 @@ const Tab = styled.span<{ isActive: boolean }>`
     }
   }
 `;
-
 
 interface RouterState {
   state: {
@@ -201,7 +199,6 @@ function Coin() {
       refetchInterval: 10000,
     }
   );
-
 
   const BaseUrl: any = tickersData?.quotes.USD;
 

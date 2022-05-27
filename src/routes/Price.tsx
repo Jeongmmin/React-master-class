@@ -2,11 +2,9 @@ import { useQuery } from "react-query";
 import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinTickers, fetchCoinToday } from "../api";
-import { ChartProps, IHistorical } from './CandleChart';
-import { checkBoolean, IItemProps, PriceData } from './Coin';
-import { ShowAnimation } from './Coins';
-
-
+import { ChartProps, IHistorical } from "./CandleChart";
+import { checkBoolean, IItemProps, PriceData } from "./Coin";
+import { ShowAnimation } from "./Coins";
 
 const Overview = styled.div`
   background-color: ${(props) => props.theme.cardBgColor};
@@ -51,9 +49,8 @@ const PriceValue = styled.span<IItemProps>`
 
 function Price() {
   const { coinId } = useOutletContext<ChartProps>();
-  const { isLoading, data } = useQuery<IHistorical[]>(
-    ["today", coinId],
-    () => fetchCoinToday(coinId)
+  const { isLoading, data } = useQuery<IHistorical[]>(["today", coinId], () =>
+    fetchCoinToday(coinId)
   );
 
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
@@ -69,7 +66,6 @@ function Price() {
   const todayObj: any = data ? data[0] : {};
 
   const BaseUrl: any = tickersData?.quotes.USD;
-
 
   return (
     <div>
