@@ -48,7 +48,7 @@ function LineChart() {
             },
             xaxis: {
               type: "datetime",
-              categories: data?.map((price) => price.time_close) ?? [],
+              categories: data?.map((price) => (price.time_close as any) * 1000) ?? [],
               tickPlacement: "between",
               axisBorder: { show: false },
               axisTicks: { show: false },

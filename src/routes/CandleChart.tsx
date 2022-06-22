@@ -35,12 +35,12 @@ function CandleChart() {
 
   const todayDataArr =
     data?.map((data) => ({
-      x: data.time_close,
+      x: (data.time_close as any)*1000,
       y: [
-        data.open.toFixed(2),
-        data.high.toFixed(2),
-        data.low.toFixed(2),
-        data.close.toFixed(2),
+        data.open,
+        data.high,
+        data.low,
+        data.close,
       ],
     })) ?? [];
 
